@@ -23,9 +23,11 @@ export const formatChainAsNum = (chainIdHex: string) => {
 
 export const checkNftAccess = async (id: number) : Promise<boolean>=> {
   const provider = new ethers.BrowserProvider(window.ethereum)
-  const tokenContract = new ethers.Contract(NFTAddress, abiNft, provider);
+  const tokenContract = new (ethers as any).Contract(NFTAddress, abiNft, provider);
   const signer = (await provider.getSigner());
   if(await tokenContract.connect(signer).balanceOf(signer.address, 0)){
+    console.log("ACESS TRUE")
+
     return true;
   }
   return false;
@@ -34,7 +36,7 @@ export const checkNftAccess = async (id: number) : Promise<boolean>=> {
 export const tokenApprove = async (tokenAddr: string, amount: BigNumberish, to: string) => {
   const abiERC20 = ["function approve(address,uint256) external"]
   const provider = new ethers.BrowserProvider(window.ethereum)
-  const tokenContract = new ethers.Contract(tokenAddr, abiERC20, provider);
+  const tokenContract = new (ethers as any).Contract(tokenAddr, abiERC20, provider);
   const signer = (await provider.getSigner());
   await tokenContract.connect(signer).approve(to, amount);
 };

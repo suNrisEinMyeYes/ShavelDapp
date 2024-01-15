@@ -91,7 +91,7 @@ const App = () => {
     const signer = (await provider.getSigner());
     let transaction = {
       to: contractNft,
-      data: await getCalldata(0),
+      data: await getCalldata(0) as string,
     };
     await signer.sendTransaction(transaction)
   }
@@ -111,7 +111,7 @@ const App = () => {
     const signer = (await provider.getSigner());
     let transaction = {
       to: contractTargetAddress2,
-      data: await getCalldata(2),
+      data: await getCalldata(2) as string,
     };
     await signer.sendTransaction(transaction)
   }
@@ -133,7 +133,7 @@ const App = () => {
     }
     const provider = new ethers.BrowserProvider(window.ethereum)
     const signer = (await provider.getSigner());
-    let aave : Contract = await getCalldata(3)
+    let aave : any = await getCalldata(3)
     await aave.connect(signer).supply(USDbC, 1000000, signer.address, 0)
     // let transaction = {
     //   to: contractTargetAddress3,
