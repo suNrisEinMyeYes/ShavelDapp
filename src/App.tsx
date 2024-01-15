@@ -3,14 +3,11 @@ import { useState, useEffect } from 'react'
 import { formatBalance, formatChainAsNum, getCalldata, checkNftAccess, tokenApprove } from './utils'
 import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers, parseEther } from "ethers";
-import { Contract } from 'ethers';
 
 const App = () => {
   const [hasProvider, setHasProvider] = useState<boolean | null>(null)
   const initialState = { accounts: [], balance: "", chainId: "" }
-  const initialNum = { ContractNum: ""}
   const [wallet, setWallet] = useState(initialState)
-  const [num, setNum] = useState(initialNum)
 
 
   const contractTargetAddress1 = "0xe4edb277e41dc89ab076a1f049f4a3efa700bce8" //orbit bridge

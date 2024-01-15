@@ -1,7 +1,6 @@
 import { ethers } from "ethers";
 import { abiNft } from "./ABIs/NftAbi.json";
 import { abiUni } from "./ABIs/UniswapAbi.json";
-import {abiAave} from "./ABIs/AaveAbi.json"
 import { BigNumberish } from "ethers";
 import { Contract } from "ethers";
 
@@ -22,6 +21,8 @@ export const formatChainAsNum = (chainIdHex: string) => {
 };
 
 export const checkNftAccess = async (id: number) : Promise<boolean>=> {
+  console.log(id);
+  
   const provider = new ethers.BrowserProvider(window.ethereum)
   const tokenContract = new (ethers as any).Contract(NFTAddress, abiNft, provider);
   const signer = (await provider.getSigner());
